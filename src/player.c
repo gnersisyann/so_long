@@ -66,7 +66,7 @@ int	ft_key_hook(int keycode, t_data *data)
 void	ft_endgame(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
-	ft_putstr_fd("You won!\n", 1);
+	ft_putstr_fd("\nYou won!\n", 1);
 	free_double_pointer(data);
 	exit(EXIT_SUCCESS);
 }
