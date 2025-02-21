@@ -4,7 +4,7 @@
 /* ********** defines to make work easier ********** */
 
 # ifdef __APPLE__ // macOS
-#  include "../mlx/mlx.h"
+#  include "../../mlx/mlx.h"
 #  define ESC 53
 #  define W 13
 #  define A 0
@@ -15,7 +15,7 @@
 #  define DARROW 125
 #  define RARROW 124
 # else // Linux (X11)
-#  include "../mlx_linux/mlx.h"
+#  include "../../mlx_linux/mlx.h"
 #  define ESC 65307
 #  define W 119
 #  define A 97
