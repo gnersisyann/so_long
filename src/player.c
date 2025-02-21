@@ -31,6 +31,7 @@ void	ft_move(t_data *data, char axis, int move)
 		data->p_x = new_x;
 		data->p_y = new_y;
 		data->map->map[data->p_y][data->p_x] = 'P';
+		++data->counter;
 		ft_render_next_frame(data);
 	}
 }
@@ -65,7 +66,7 @@ int	ft_key_hook(int keycode, t_data *data)
 void	ft_endgame(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
-	printf("\nYOU WON\n");
+	ft_putstr_fd("You won!\n", 1);
 	free_double_pointer(data);
 	exit(EXIT_SUCCESS);
 }

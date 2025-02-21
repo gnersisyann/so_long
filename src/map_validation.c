@@ -123,28 +123,28 @@ void	check_path(t_data *data)
 	len = ft_strlen(data->map->map[0]);
 	visited = ft_calloc((data->size_y / IMG_H) + 1, sizeof(char *));
 	if (!visited)
-		handle_error(data, "visited calloc error\n", 1);
+		handle_error(data, "Error\nvisited calloc error\n", 1);
 	while (i < data->size_y / IMG_H)
 	{
 		visited[i] = ft_strdup(data->map->map[i]);
 		if (!visited[i])
-			handle_error(data, "visited copy error", 1);
+			handle_error(data, "Error\nvisited copy error", 1);
 		++i;
 	}
 	visited[i] = NULL;
 	if (!check_valid_exit(data, visited, data->p_x, data->p_y))
 	{
 		free_double_p(&visited);
-		handle_error(data, "exit is not reachable\n", 1);
+		handle_error(data, "Error\nexit is not reachable\n", 1);
 	}
 	i = 0;
 	while (i < data->size_y / IMG_H)
 	{
 		ft_strlcpy(visited[i], data->map->map[i], len);
 		if (!visited[i])
-			handle_error(data, "visited copy error", 1);
+			handle_error(data, "Error\nvisited copy error", 1);
 		++i;
 	}
 	if (!check_valid_coins(data, visited, data->p_x, data->p_y, &counter))
-		handle_error(data, "coins are not reachable", 1);
+		handle_error(data, "Error\ncoins are not reachable", 1);
 }

@@ -9,7 +9,7 @@ void	initialize(t_data *data)
 	height = IMG_H;
 	data->img = malloc(sizeof(t_img));
 	if (!data->img)
-		handle_error(data, "malloc error", 1);
+		handle_error(data, "Error\nmalloc error", 1);
 	data->img->player_up = mlx_xpm_file_to_image(data->mlx,
 			"textures/ship_up.xpm", &width, &height);
 	if (!data->img->player_up)

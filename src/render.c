@@ -74,6 +74,8 @@ void	create_map(t_data *data)
 
 int	ft_render_next_frame(t_data *data)
 {
+	ft_putstr_fd("\nNumber of moves:", 1);
+	ft_putnbr_fd(data->counter, 1);
 	put_background(data);
 	create_map(data);
 	mlx_hook(data->win, 17, 1L << 2, ft_exit, data);

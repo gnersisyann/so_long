@@ -7,7 +7,7 @@ void	free_double_pointer(t_data *data)
 	i = 0;
 	while (data->map->map[i])
 		i++;
-	while (i > 0) // >= changed to >
+	while (i > 0)
 		free(data->map->map[--i]);
 	free(data->map->map);
 	free(data->img);
@@ -21,7 +21,7 @@ void	free_double_p(char ***str)
 	while ((*str)[i])
 		i++;
 	i--;
-	while (i > 0) // >= changed to >
+	while (i > 0)
 		free((*str)[--i]);
 	free((*str));
 }
