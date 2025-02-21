@@ -1,21 +1,15 @@
 NAME		=	so_long
-HEADER		=	so_long.h
+HEADER		=	includes/*.h
 CC			=	cc
 SRCS		=	main.c \
-				# place_image.c \
-				# srcs/so_long.c \
-				# srcs/key_manager.c \
-				# srcs/maps.c \
-				# srcs/validate_map.c \
-				# srcs/error.c \
-				# srcs/movements.c \
-				# srcs/game.c \
-				# srcs/free_map.c \
-				# srcs/enemy.c \
-				# srcs/enemy_move.c \
-				# srcs/animation.c
+				src/graphics.c \
+				src/map_utils.c \
+				src/map_validation.c \
+				src/player.c \
+				src/render.c \
+				src/utils.c
 
-MLX_PATH	=	mlx_linux/
+MLX_PATH	=	mlx/
 LIBFT_PATH	=	libft/
 LIBFT		=	libft/libft.a
 CFLAGS		=	-g #-Wall -Wextra -Werror
@@ -24,7 +18,7 @@ RM			=	rm -f
 OBJS		=	$(SRCS:%.c=%.o)
 
 ifeq ($(shell uname), Linux)
-MLX_PATH	=	mlx/
+MLX_PATH	=	mlx_linux/
 MLXFLAGS	=	-L ./mlx_linux/ -lmlx -Ilmlx -lXext -lX11
 endif
 
