@@ -38,26 +38,22 @@ void	handle_error(t_data *data, char *str, int num)
 int	ft_exit(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
-	printf("\nESC KEY PRESSED\n");
+	printf("\nWINDOW CLOSED\n");
 	free_double_pointer(data);
 	exit(EXIT_SUCCESS);
 }
 
-int	ft_key_hook(int keycode, t_data *data)
+void	put_object(t_data *data, int type)
 {
-	if (keycode == ESC)
-		ft_exit(data);
-	// else if (keycode == W || keycode == UARROW)
-	// 	ft_move(data, 'y', UP);
-	// else if (keycode == A || keycode == LARROW)
-	// 	ft_move(data, 'x', LEFT);
-	// else if (keycode == S || keycode == DARROW)
-	// 	ft_move(data, 'y', DOWN);
-	// else if (keycode == D || keycode == RARROW)
-	// 	ft_move(data, 'x', RIGHT);
-	// if (data->map->map[data->p_y][data->p_x] == 'E')
-	// 	winner(data);
-	return (0);
+	if (type == 1)
+		mlx_put_image_to_window(data->mlx, data->win, data->img->wall,
+			data->map->x * IMG_W, data->map->y * IMG_H);
+	else if (type == 2)
+		mlx_put_image_to_window(data->mlx, data->win, data->img->coin,
+			data->map->x * IMG_W, data->map->y * IMG_H);
+	else if (type == 3)
+		mlx_put_image_to_window(data->mlx, data->win, data->img->exit,
+			data->map->x * IMG_W, data->map->y * IMG_H);
 }
 
 void	put_background(t_data *data)
@@ -79,16 +75,19 @@ void	put_background(t_data *data)
 	}
 }
 
-void	put_object(t_data *data, int type)
+void	put_player(t_data *data)
 {
-	if (type == 1)
-		mlx_put_image_to_window(data->mlx, data->win, data->img->wall,
+	if (data->direction == DIRECTION_UP)
+		mlx_put_image_to_window(data->mlx, data->win, data->img->player_up,
 			data->map->x * IMG_W, data->map->y * IMG_H);
-	else if (type == 2)
-		mlx_put_image_to_window(data->mlx, data->win, data->img->coin,
+	else if (data->direction == DIRECTION_DOWN)
+		mlx_put_image_to_window(data->mlx, data->win, data->img->player_down,
 			data->map->x * IMG_W, data->map->y * IMG_H);
-	else if (type == 3)
-		mlx_put_image_to_window(data->mlx, data->win, data->img->exit,
+	else if (data->direction == DIRECTION_RIGHT)
+		mlx_put_image_to_window(data->mlx, data->win, data->img->player_right,
+			data->map->x * IMG_W, data->map->y * IMG_H);
+	else if (data->direction == DIRECTION_LEFT)
+		mlx_put_image_to_window(data->mlx, data->win, data->img->player_left,
 			data->map->x * IMG_W, data->map->y * IMG_H);
 }
 
@@ -99,8 +98,7 @@ void	create_map(t_data *data)
 	while (data->map->y < (data->size_y / IMG_H))
 	{
 		if (data->map->map[data->map->y][data->map->x] == 'P')
-			mlx_put_image_to_window(data->mlx, data->win, data->img->player_up,
-				data->map->x * IMG_W, data->map->y * IMG_H);
+			put_player(data);
 		else if (data->map->map[data->map->y][data->map->x] == '1')
 			put_object(data, 1);
 		else if (data->map->map[data->map->y][data->map->x] == 'C')
@@ -116,6 +114,33 @@ void	create_map(t_data *data)
 		}
 	}
 }
+void		ft_move(t_data *data, char axis, int move);
+int	ft_key_hook(int keycode, t_data *data)
+{
+	if (keycode == ESC)
+		ft_exit(data);
+	else if (keycode == W || keycode == UARROW)
+	{
+		data->direction = DIRECTION_UP;
+		ft_move(data, 'y', UP);
+	}
+	else if (keycode == A || keycode == LARROW)
+	{
+		data->direction = DIRECTION_LEFT;
+		ft_move(data, 'x', LEFT);
+	}
+	else if (keycode == S || keycode == DARROW)
+	{
+		data->direction = DIRECTION_DOWN;
+		ft_move(data, 'y', DOWN);
+	}
+	else if (keycode == D || keycode == RARROW)
+	{
+		data->direction = DIRECTION_RIGHT;
+		ft_move(data, 'x', RIGHT);
+	}
+	return (0);
+}
 
 static int	ft_render_next_frame(t_data *data)
 /* I made this function to check for keyboard or mouse input */
@@ -125,6 +150,47 @@ static int	ft_render_next_frame(t_data *data)
 	mlx_hook(data->win, 17, 1L << 2, ft_exit, data);
 	mlx_key_hook(data->win, ft_key_hook, data);
 	return (0);
+}
+
+void	ft_endgame(t_data *data)
+{
+	mlx_destroy_window(data->mlx, data->win);
+	printf("\nYOU WON\n");
+	free_double_pointer(data);
+	exit(EXIT_SUCCESS);
+}
+
+void	ft_move(t_data *data, char axis, int move)
+{
+	int	new_x;
+	int	new_y;
+
+	new_x = data->p_x;
+	new_y = data->p_y;
+	if (axis == 'x')
+		new_x += move;
+	else
+		new_y += move;
+	if (data->map->map[new_y][new_x] == '1')
+		return ;
+	if (data->map->map[new_y][new_x] == 'E')
+	{
+		if (data->collected != data->map->coins)
+			return ;
+		else
+			ft_endgame(data);
+	}
+	if (data->map->map[new_y][new_x] == '0'
+		|| data->map->map[new_y][new_x] == 'C')
+	{
+		if (data->map->map[new_y][new_x] == 'C')
+			++data->collected;
+		data->map->map[data->p_y][data->p_x] = '0';
+		data->p_x = new_x;
+		data->p_y = new_y;
+		data->map->map[data->p_y][data->p_x] = 'P';
+		ft_render_next_frame(data);
+	}
 }
 
 void	check_filename(char *file_name)
@@ -447,6 +513,7 @@ int	main(int argc, char **argv)
 	validate_input(&data, argv);
 	check_path(&data);
 	data.win = mlx_new_window(data.mlx, data.size_x, data.size_y, "so_long");
+	data.direction = DIRECTION_UP;
 	ft_render_next_frame(&data);
 	mlx_loop(data.mlx);
 	perror("Error\nLoop fail\n");

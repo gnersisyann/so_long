@@ -24,6 +24,7 @@ RM			=	rm -f
 OBJS		=	$(SRCS:%.c=%.o)
 
 ifeq ($(shell uname), Linux)
+MLX_PATH	=	mlx/
 MLXFLAGS	=	-L ./mlx_linux/ -lmlx -Ilmlx -lXext -lX11
 endif
 
