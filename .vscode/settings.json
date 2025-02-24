@@ -1,5 +1,5 @@
 {
-    "editor.defaultFormatter": "keyhr.42-c-format",
+    // "editor.defaultFormatter": "keyhr.42-c-format",
     "42header.username": "ganersis",
     "42header.email": "marvin@42.fr"
 }

@@ -24,7 +24,7 @@ void	create_map(t_data *data);
 int		ft_render_next_frame(t_data *data);
 
 // player
-void	ft_endgame(t_data *data);
+void	ft_endgame(t_data *data, int state);
 void	ft_move(t_data *data, char axis, int move);
 int		ft_key_hook(int keycode, t_data *data);
 

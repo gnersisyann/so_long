@@ -1,6 +1,6 @@
 #include "../includes/so_long.h"
 
-void	ft_endgame(t_data *data);
+void	ft_endgame(t_data *data, int state);
 
 void	ft_move(t_data *data, char axis, int move)
 {
@@ -20,7 +20,11 @@ void	ft_move(t_data *data, char axis, int move)
 		if (data->collected != data->map->coins)
 			return ;
 		else
-			ft_endgame(data);
+			ft_endgame(data,1);
+	}
+	if (data->map->map[new_y][new_x] == 'M')
+	{
+			ft_endgame(data,0);
 	}
 	if (data->map->map[new_y][new_x] == '0'
 		|| data->map->map[new_y][new_x] == 'C')
@@ -63,10 +67,14 @@ int	ft_key_hook(int keycode, t_data *data)
 	return (0);
 }
 
-void	ft_endgame(t_data *data)
+void	ft_endgame(t_data *data, int state)
 {
+	if (state == 1)
+		ft_putstr_fd("You won!\n", 1);
+	else
+		ft_putstr_fd("You lost!\n", 1);
 	mlx_destroy_window(data->mlx, data->win);
-	ft_putstr_fd("\nYou won!\n", 1);
+	
 	free_double_pointer(data);
 	exit(EXIT_SUCCESS);
 }

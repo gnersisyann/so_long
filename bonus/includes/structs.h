@@ -9,8 +9,10 @@ typedef struct s_img
 	void	*player_right;
 	void	*player_down;
 	void	*background;
+	void 	*enemy;
 	void	*wall;
-	void	*coin;
+	void	*coin[4];
+	int 	current_coin;
 	void	*exit;
 }			t_img;
 
@@ -39,6 +41,7 @@ typedef struct s_data
 	int		direction;
 	int		counter;
 	int		collected;
+	int 	frame;
 	t_map	*map;
 	t_img	*img;
 }			t_data;

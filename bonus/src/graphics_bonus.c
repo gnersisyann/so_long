@@ -38,12 +38,34 @@ void	initialize(t_data *data)
 			&width, &height);
 	if (!data->img->wall)
 		handle_error(data, "Error\nwall file not found", 1);
-	data->img->coin = mlx_xpm_file_to_image(data->mlx,
-			"textures/collectable.xpm", &width, &height);
-	if (!data->img->coin)
+
+	data->img->coin[0] = mlx_xpm_file_to_image(data->mlx,
+			"textures/ship_up.xpm", &width, &height);
+	if (!data->img->coin[0])
 		handle_error(data, "Error\ncoin file not found", 1);
+
+	data->img->coin[1] = mlx_xpm_file_to_image(data->mlx,
+			"textures/ship_left.xpm", &width, &height);
+	if (!data->img->coin[1])
+		handle_error(data, "Error\ncoin file not found", 1);
+
+	data->img->coin[2] = mlx_xpm_file_to_image(data->mlx,
+			"textures/ship_down.xpm", &width, &height);
+	if (!data->img->coin[2])
+		handle_error(data, "Error\ncoin file not found", 1);
+		
+	data->img->coin[3] = mlx_xpm_file_to_image(data->mlx,
+			"textures/ship_right.xpm", &width, &height);
+	if (!data->img->coin[3])
+		handle_error(data, "Error\ncoin file not found", 1);
+
 	data->img->exit = mlx_xpm_file_to_image(data->mlx, "textures/exit.xpm",
 			&width, &height);
 	if (!data->img->exit)
+		handle_error(data, "Error\nexit file not found", 1);
+
+	data->img->enemy = mlx_xpm_file_to_image(data->mlx, "textures/ship_down.xpm",
+			&width, &height);
+	if (!data->img->enemy)
 		handle_error(data, "Error\nexit file not found", 1);
 }
