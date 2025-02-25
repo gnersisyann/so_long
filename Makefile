@@ -1,7 +1,7 @@
 NAME		=	so_long
 NAME_BONUS	=	so_long_bonus
-HEADER		=	mandatory/includes/*.h
-HEADER_BONUS =	bonus/includes/*.h
+HEADER		=	$(wildcard mandatory/includes/*.h)
+HEADER_BONUS =	$(wildcard bonus/includes/*.h)
 CC			=	cc
 SRCS		=	mandatory/main.c \
 				mandatory/src/graphics.c \

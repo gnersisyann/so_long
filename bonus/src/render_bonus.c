@@ -10,7 +10,7 @@ void put_object(t_data *data, int type) {
                             data->map->x * IMG_W, data->map->y * IMG_H);
     if (data->frame % 10 == 0) {
       data->img->current_coin++;
-      if (data->img->current_coin == 4)
+      if (data->img->current_coin == 10)
         data->img->current_coin = 0;
     }
   } else if (type == 3)

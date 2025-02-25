@@ -43,7 +43,7 @@ void free_mlx_images(t_data *data) {
   mlx_destroy_image(data->mlx, data->img->exit);
   mlx_destroy_image(data->mlx, data->img->enemy);
 
-  for (i = 0; i < 4; i++)
+  for (i = 0; i < 10; i++)
     mlx_destroy_image(data->mlx, data->img->coin[i]);
 }
 
