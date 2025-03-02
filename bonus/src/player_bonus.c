@@ -63,7 +63,6 @@ void ft_endgame(t_data *data, int state) {
 
   free_mlx_images(data);
   mlx_destroy_window(data->mlx, data->win);
-  mlx_destroy_display(data->mlx); // Только для Linux
   free(data->mlx);
   free_double_pointer(data);
   exit(EXIT_SUCCESS);

@@ -22,18 +22,18 @@ SRCS_BONUS	=	bonus/main.c \
 				bonus/src/render_bonus.c \
 				bonus/src/utils_bonus.c
 
-MLX_PATH	=	mlx/mlx/
+MLX_PATH	=	mlx
 LIBFT_PATH	=	libft/
 LIBFT		=	libft/libft.a
 CFLAGS		=	-g #-Wall -Wextra -Werror
-MLXFLAGS	=	-L ./mlx/mlx/ -lmlx -framework OpenGL -framework AppKit -lz
+MLXFLAGS	=	-lmlx -framework OpenGL -framework AppKit
 RM			=	rm -f
 OBJS		=	$(SRCS:%.c=%.o)
 OBJS_BONUS		=	$(SRCS_BONUS:%.c=%.o)
 
 ifeq ($(shell uname), Linux)
-MLX_PATH	=	mlx/mlx_linux/
-MLXFLAGS	=	-L ./mlx/mlx_linux/ -lmlx -Ilmlx -lXext -lX11
+MLX_PATH	=	mlx_linux
+MLXFLAGS	=	-L ./mlx_linux/ -lmlx -Ilmlx -lXext -lX11
 endif
 
 all:	subsystems $(NAME)

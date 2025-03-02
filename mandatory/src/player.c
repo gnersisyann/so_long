@@ -55,7 +55,6 @@ int ft_key_hook(int keycode, t_data *data) {
 void ft_endgame(t_data *data) {
   free_mlx_images(data);
   mlx_destroy_window(data->mlx, data->win);
-  mlx_destroy_display(data->mlx); // Только для Linux
   free(data->mlx);
   ft_putstr_fd("\nYou won!\n", 1);
   free_double_pointer(data);

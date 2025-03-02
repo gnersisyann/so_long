@@ -50,7 +50,6 @@ void free_mlx_images(t_data *data) {
 int ft_exit(t_data *data) {
   free_mlx_images(data);
   mlx_destroy_window(data->mlx, data->win);
-  mlx_destroy_display(data->mlx);
   free(data->mlx);
   printf("\nWINDOW CLOSED\n");
   free_double_pointer(data);
