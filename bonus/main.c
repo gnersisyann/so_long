@@ -40,7 +40,6 @@ int	main(int argc, char **argv)
 	data.win = mlx_new_window(data.mlx, data.size_x, data.size_y, "so_long");
 	data.direction = DIRECTION_UP;
 	data.counter = 0;
-	data.img->current_coin = 0;
 	data.frame = 0;
 	ft_render_next_frame(&data);
 	mlx_loop_hook(data.mlx, ft_render_next_frame, &data);

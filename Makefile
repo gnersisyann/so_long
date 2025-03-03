@@ -25,11 +25,11 @@ SRCS_BONUS	=	bonus/main.c \
 MLX_PATH	=	mlx
 LIBFT_PATH	=	libft/
 LIBFT		=	libft/libft.a
-CFLAGS		=	-g #-Wall -Wextra -Werror
+CFLAGS		=	-g -Wall -Wextra -Werror
 MLXFLAGS	=	-lmlx -framework OpenGL -framework AppKit
 RM			=	rm -f
 OBJS		=	$(SRCS:%.c=%.o)
-OBJS_BONUS		=	$(SRCS_BONUS:%.c=%.o)
+OBJS_BONUS	=	$(SRCS_BONUS:%.c=%.o)
 
 ifeq ($(shell uname), Linux)
 MLX_PATH	=	mlx_linux
@@ -44,13 +44,16 @@ subsystems:
 	@make -C $(MLX_PATH) all
 	@make -C $(LIBFT_PATH) all
 
-$(NAME): $(OBJS) $(HEADER)
+$(NAME): $(OBJS)
 	$(CC) $(OBJS) $(LIBFT) $(MLXFLAGS) $(CFLAGS) -o $(NAME)
 
-$(NAME_BONUS): $(OBJS_BONUS) $(HEADER_BONUS)
+$(NAME_BONUS): $(OBJS_BONUS)
 	$(CC) $(OBJS_BONUS) $(LIBFT) $(MLXFLAGS) $(CFLAGS) -o $(NAME_BONUS)
 
-%.o: %.c
+mandatory/%.o: mandatory/%.c $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+bonus/%.o: bonus/%.c $(HEADER_BONUS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

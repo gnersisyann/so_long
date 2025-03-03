@@ -1,6 +1,5 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
-/* ***** struct to store the different images ***** */
 
 typedef struct s_img
 {
@@ -14,8 +13,6 @@ typedef struct s_img
 	void	*exit;
 }			t_img;
 
-/* ***** struct to create the map and keep track of the contents ***** */
-
 typedef struct s_map
 {
 	char	**map;
@@ -23,10 +20,7 @@ typedef struct s_map
 	int		x;
 	int		y;
 	int		coins;
-	// coin count in map
 }			t_map;
-
-/* ***** struct to hand all of my programms data between functions ***** */
 
 typedef struct s_data
 {
