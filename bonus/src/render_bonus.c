@@ -85,23 +85,20 @@ void	create_map(t_data *data)
 
 int	ft_render_next_frame(t_data *data)
 {
-	char *moves_str;
-	char *tmp;
+	char	*moves_str;
+	char	*tmp;
 
 	put_background(data);
 	create_map(data);
-
 	moves_str = ft_itoa(data->counter);
 	tmp = ft_strjoin("Moves: ", moves_str);
 	free(moves_str);
 	mlx_string_put(data->mlx, data->win, (data->size_x / 2) - IMG_W, IMG_H / 2
 		- 10, 0x0000ff, tmp);
 	free(tmp);
-
 	data->frame++;
 	if (data->frame > 1000000)
 		data->frame = 0;
-
 	mlx_hook(data->win, 17, 1L << 2, ft_exit, data);
 	mlx_key_hook(data->win, ft_key_hook, data);
 	return (0);

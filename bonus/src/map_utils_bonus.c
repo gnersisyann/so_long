@@ -53,11 +53,11 @@ void	window_size(t_data *data, char **argv)
 
 void	validate_input(t_data *data, char **argv)
 {
-	char *line;
-	int fd;
-	int i;
-	int len;
-	char *newline;
+	char	*line;
+	int		fd;
+	int		i;
+	int		len;
+	char	*newline;
 
 	i = 0;
 	fd = open(argv[1], O_RDONLY);

@@ -11,6 +11,7 @@ SRCS		=	mandatory/main.c \
 				mandatory/src/graphics.c \
 				mandatory/src/map_utils.c \
 				mandatory/src/map_validation.c \
+				mandatory/src/map_validation_utils.c \
 				mandatory/src/player.c \
 				mandatory/src/render.c \
 				mandatory/src/utils.c

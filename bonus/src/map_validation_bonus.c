@@ -108,10 +108,10 @@ int	check_valid_coins(t_data *data, char **visited, int x, int y, int *counter)
 
 void	check_path(t_data *data)
 {
-	char **visited;
-	int i;
-	int len;
-	int counter;
+	char	**visited;
+	int		i;
+	int		len;
+	int		counter;
 
 	counter = 0;
 	i = 0;
