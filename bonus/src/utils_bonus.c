@@ -38,6 +38,7 @@ void	free_mlx_images(t_data *data)
 {
 	int	i;
 
+	i = 0;
 	mlx_destroy_image(data->mlx, data->img->player_up);
 	mlx_destroy_image(data->mlx, data->img->player_down);
 	mlx_destroy_image(data->mlx, data->img->player_left);
@@ -46,8 +47,11 @@ void	free_mlx_images(t_data *data)
 	mlx_destroy_image(data->mlx, data->img->wall);
 	mlx_destroy_image(data->mlx, data->img->exit);
 	mlx_destroy_image(data->mlx, data->img->enemy);
-	for (i = 0; i < 10; i++)
+	while (i < 10)
+	{
 		mlx_destroy_image(data->mlx, data->img->coin[i]);
+		++i;
+	}
 }
 
 int	ft_exit(t_data *data)

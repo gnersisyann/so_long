@@ -51,6 +51,15 @@ void	window_size(t_data *data, char **argv)
 	close(fd);
 }
 
+static void	validate_input_helper(t_data **data, char **newline, char **line,
+		int *i)
+{
+	free((*data)->map->map[*i]);
+	(*data)->map->map[*i] = *newline;
+	(*i)++;
+	free(*line);
+}
+
 void	validate_input(t_data *data, char **argv)
 {
 	char	*line;
@@ -74,10 +83,7 @@ void	validate_input(t_data *data, char **argv)
 		newline = ft_strjoin(data->map->map[i], line);
 		if (!newline)
 			handle_error(data, "Error\nstrjoin error", 1);
-		free(data->map->map[i]);
-		data->map->map[i] = newline;
-		i++;
-		free(line);
+		validate_input_helper(&data, &newline, &line, &i);
 	}
 	close(fd);
 	check_map(data);

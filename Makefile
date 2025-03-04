@@ -19,6 +19,7 @@ SRCS_BONUS	=	bonus/main.c \
 				bonus/src/graphics_bonus.c \
 				bonus/src/map_utils_bonus.c \
 				bonus/src/map_validation_bonus.c \
+				bonus/src/map_validation_utils_bonus.c \
 				bonus/src/player_bonus.c \
 				bonus/src/render_bonus.c \
 				bonus/src/utils_bonus.c
@@ -34,7 +35,7 @@ OBJS_BONUS	=	$(SRCS_BONUS:%.c=%.o)
 
 ifeq ($(shell uname), Linux)
 MLX_PATH	=	mlx_linux
-MLXFLAGS	=	-L ./mlx_linux/ -lmlx -Ilmlx -lXext -lX11
+MLXFLAGS = -Lmlx_linux -lmlx -lXext -lX11
 endif
 
 all:	subsystems $(NAME)

@@ -31,14 +31,17 @@ int		ft_key_hook(int keycode, t_data *data);
 void	initialize(t_data *data);
 
 // map validation
-void	check_filename(char *file_name);
-void	check_validity(t_data *data, int x, int y, t_checker *check);
+
 void	check_map(t_data *data);
-int		check_valid_exit(t_data *data, char **visited, int x, int y);
-int		check_valid_coins(t_data *data, char **visited, int x, int y,
-			int *counter);
+
 void	check_path(t_data *data);
 
+// map validation utils
+int		check_valid_coins(t_data *data, char **visited, int coords[2],
+			int *counter);
+int		check_valid_exit(t_data *data, char **visited, int x, int y);
+void	check_filename(char *file_name);
+void	check_validity(t_data *data, int x, int y, t_checker *check);
 // map utils
 int		ft_line_count(int fd, int size_x);
 void	window_size(t_data *data, char **argv);

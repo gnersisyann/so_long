@@ -2,6 +2,26 @@
 
 void	ft_endgame(t_data *data, int state);
 
+void	ft_move_helper(t_data **data, int new_x, int new_y)
+{
+	if ((*data)->map->map[new_y][new_x] == 'M')
+	{
+		ft_endgame(*data, 0);
+	}
+	if ((*data)->map->map[new_y][new_x] == '0'
+		|| (*data)->map->map[new_y][new_x] == 'C')
+	{
+		if ((*data)->map->map[new_y][new_x] == 'C')
+			++(*data)->collected;
+		(*data)->map->map[(*data)->p_y][(*data)->p_x] = '0';
+		(*data)->p_x = new_x;
+		(*data)->p_y = new_y;
+		(*data)->map->map[(*data)->p_y][(*data)->p_x] = 'P';
+		++(*data)->counter;
+		ft_render_next_frame(*data);
+	}
+}
+
 void	ft_move(t_data *data, char axis, int move)
 {
 	int	new_x;
@@ -22,22 +42,7 @@ void	ft_move(t_data *data, char axis, int move)
 		else
 			ft_endgame(data, 1);
 	}
-	if (data->map->map[new_y][new_x] == 'M')
-	{
-		ft_endgame(data, 0);
-	}
-	if (data->map->map[new_y][new_x] == '0'
-		|| data->map->map[new_y][new_x] == 'C')
-	{
-		if (data->map->map[new_y][new_x] == 'C')
-			++data->collected;
-		data->map->map[data->p_y][data->p_x] = '0';
-		data->p_x = new_x;
-		data->p_y = new_y;
-		data->map->map[data->p_y][data->p_x] = 'P';
-		++data->counter;
-		ft_render_next_frame(data);
-	}
+	ft_move_helper(&data, new_x, new_y);
 }
 
 int	ft_key_hook(int keycode, t_data *data)
