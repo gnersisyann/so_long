@@ -1,4 +1,5 @@
 #include "includes/so_long.h"
+#include <stdlib.h>
 
 static void	main_helper(t_data *data, char **argv)
 {

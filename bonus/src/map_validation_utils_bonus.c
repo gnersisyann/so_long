@@ -56,28 +56,28 @@ int	check_valid_exit(t_data *data, char **visited, int x, int y)
 
 int	check_valid_coins(t_data *data, char **visited, int coords[2], int *counter)
 {
-	int	tmp[2];
+	int	new_coords[2];
 
-	tmp[0] = coords[0];
-	tmp[1] = coords[1];
 	if (coords[1] < 0 || coords[1] >= data->size_y / IMG_H || coords[0] < 0
 		|| coords[0] >= data->size_x / IMG_W)
 		return (0);
-	if (visited[coords[1]][coords[0]] == '1')
+	if (visited[coords[1]][coords[0]] == '1'
+		|| visited[coords[1]][coords[0]] == 'E')
 		return (0);
 	if (visited[coords[1]][coords[0]] == 'C')
 		(*counter)++;
 	visited[coords[1]][coords[0]] = '1';
-	coords[0] = tmp[0] + 1;
-	check_valid_coins(data, visited, coords, counter);
-	coords[0] = tmp[0] - 1;
-	check_valid_coins(data, visited, coords, counter);
-	coords[0] = tmp[0];
-	coords[1] = tmp[1] + 1;
-	check_valid_coins(data, visited, coords, counter);
-	coords[1] = tmp[1] - 1;
-	check_valid_coins(data, visited, coords, counter);
-	if (*counter == data->map->coins)
-		return (1);
-	return (0);
+	new_coords[0] = coords[0] + 1;
+	new_coords[1] = coords[1];
+	check_valid_coins(data, visited, new_coords, counter);
+	new_coords[0] = coords[0] - 1;
+	new_coords[1] = coords[1];
+	check_valid_coins(data, visited, new_coords, counter);
+	new_coords[0] = coords[0];
+	new_coords[1] = coords[1] + 1;
+	check_valid_coins(data, visited, new_coords, counter);
+	new_coords[0] = coords[0];
+	new_coords[1] = coords[1] - 1;
+	check_valid_coins(data, visited, new_coords, counter);
+	return (*counter == data->map->coins);
 }
