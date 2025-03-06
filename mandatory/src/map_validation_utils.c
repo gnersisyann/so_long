@@ -33,7 +33,7 @@ void	check_validity(t_data *data, int x, int y, t_checker *check)
 		if (data->map->coins == 0)
 			handle_error(data, "Error\ninvalid coin count\n", 1);
 		if (check->player != 1)
-			handle_error(data, "Error\ninvalid player count", 1);
+			handle_error(data, "Error\ninvalid player count\n", 1);
 	}
 }
 

@@ -11,7 +11,7 @@ static void	check_map_helper(t_data **data, int x, int y)
 	else if (((x == 0 || y == 0 || y == ((*data)->size_y / IMG_H - 1)
 				|| x == ((*data)->size_x / IMG_W - 1))
 			&& (*data)->map->map[y][x] != '1'))
-		handle_error(*data, "Error\nInvalid walls", 1);
+		handle_error(*data, "Error\nInvalid walls\n", 1);
 }
 
 void	check_map(t_data *data)
@@ -52,13 +52,13 @@ static void	check_path_helper(t_data **data, char ***visited, int len,
 	{
 		ft_strlcpy((*visited)[i], (*data)->map->map[i], len);
 		if (!(*visited)[i])
-			handle_error(*data, "Error\nvisited copy error", 1);
+			handle_error(*data, "Error\nvisited copy error\n", 1);
 		++i;
 	}
 	if (!check_valid_coins(*data, *visited, coords, counter))
 	{
 		free_double_p(&(*visited));
-		handle_error(*data, "Error\ncoins are not reachable", 1);
+		handle_error(*data, "Error\ncoins are not reachable\n", 1);
 	}
 	free_double_p(&(*visited));
 }
@@ -80,7 +80,7 @@ void	check_path(t_data *data)
 	{
 		visited[i] = ft_strdup(data->map->map[i]);
 		if (!visited[i])
-			handle_error(data, "Error\nvisited copy error", 1);
+			handle_error(data, "Error\nvisited copy error\n", 1);
 		++i;
 	}
 	visited[i] = NULL;

@@ -10,13 +10,13 @@ static void	main_helper(t_data *data, char **argv)
 	{
 		data->map->map[i] = ft_strdup("");
 		if (!data->map->map[i])
-			handle_error(data, "Error\nmalloc error", 1);
+			handle_error(data, "Error\nmalloc error\n", 1);
 		++i;
 	}
 	data->map->map[data->size_y / IMG_H] = NULL;
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		handle_error(data, "Error\nmlx init error", 1);
+		handle_error(data, "Error\nmlx init error\n", 1);
 	initialize(data);
 	validate_input(data, argv);
 	check_path(data);

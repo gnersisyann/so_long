@@ -71,7 +71,7 @@ void	validate_input(t_data *data, char **argv)
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		handle_error(data, "Error\nopen error", 1);
+		handle_error(data, "Error\nopen error\n", 1);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -82,7 +82,7 @@ void	validate_input(t_data *data, char **argv)
 			line[len - 1] = '\0';
 		newline = ft_strjoin(data->map->map[i], line);
 		if (!newline)
-			handle_error(data, "Error\nstrjoin error", 1);
+			handle_error(data, "Error\nstrjoin error\n", 1);
 		validate_input_helper(&data, &newline, &line, &i);
 	}
 	close(fd);
