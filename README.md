@@ -25,6 +25,14 @@ Run the game with a valid map file:
     D / → – Move right
     ESC – Quit the game
 
+# 📷 Screenshots  
+
+![Game Screenshot 1](https://i.imgur.com/xkGFDIR.png)  
+*(mandatory)*
+
+![Game Screenshot 2](https://i.imgur.com/UJHDr8r.png)  
+*(bonus)*
+
 # 📜 Example Map (.ber format)
 ```
 111111
