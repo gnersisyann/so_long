@@ -26,12 +26,12 @@ Run the game with a valid map file:
     ESC – Quit the game
 
 # 📜 Example Map (.ber format)
-
+```
 111111
 10C0E1
 10P001
 111111
-
+```
     1 – Walls
     0 – Walkable space
     P – Player start position
